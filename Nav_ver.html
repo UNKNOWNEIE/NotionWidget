@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<!-- Google Font -->
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+	<!-------->
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+
+		.navMenu {
+			font-family: 'Advent Pro', sans-serif;
+			padding: 8px;
+			text-align: center;
+			margin: 7px auto;
+			width: fit-content;
+		}
+
+		.navMenu a {
+			color: #272727;
+			text-decoration: none;
+			text-transform: uppercase;
+			display: inline-block;
+			padding: 6px;
+		}
+
+		.background {
+			background-color: #ece5f0;
+		}
+
+		.border {
+			border: 1px solid #cccccc;
+
+		}
+
+		.navMenu a:hover {
+
+			color: #d09c0b;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navMenu  border">
+		<a id="home" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-house"></i> Home</a>
+		<a id="inbox" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-inbox"></i> Inbox</a>
+		<a id="week" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-calendar-week"></i> Planner</a>
+		<a id="projects" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-briefcase"></i> Projects</a>
+		<a id="tasks" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-list-check"></i> Tasks</a>
+		<a id="business" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-money-bill-wave"></i> Business</a>
+		<a id="knowledge" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-lightbulb"></i> Knowledge</a>
+		<a id="topics" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-layer-group"></i> Topics</a>
+		<a id="notes" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-book"></i> Notes</a>
+		<a id="media" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-bookmark"></i> Media</a>
+		<a id="resourses" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-wrench"></i> Resourses</a>
+		<a id="lifewiki" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-heart"></i> Lifewiki</a>
+
+
+
+	</nav>
+
+
+	<script>
+
+		let direction = "horizontal";
+		if (direction === "vertical") {
+			document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
+		}
+
+
+		function navigate(id) {
+
+			if (id == 'Home')
+				window.open("https://www.notion.so/Home-0ac732cc9863445ba5395a5dd357ac34", '_blank').focus();
+			else if (id == "Business")
+				window.open("https://www.notion.so/Business-11f236bedc7445e1bf2bf32c468e53a5", '_blank').focus();
+			else if (id == "Tasks")
+				window.open("https://www.notion.so/Tasks-4599724deaba4c85a75bd4e5a24f1c70", '_blank').focus();
+			else if (id == "Education")
+				window.open("https://www.notion.so/Education-334232d3d59148e68610522e82a58a45", '_blank').focus();
+	    else if (id == "Work")
+				window.open("https://www.notion.so/Work-6deeee10f75e401f9c1cc7db5b512e23", '_blank').focus();
+			else if (id == "Planner")
+				window.open("https://www.notion.so/Planner-80d95b30d6d14a4fafc4b705582d625b", '_blank').focus();
+			else if (id == "Journal")
+				window.open("https://www.notion.so/Journal-c905286433944135b429bd25170284b4", '_blank').focus();
+			else if (id == "Media")
+				window.open("https://www.notion.so/Media-157f572728f04b1e97d382f766c59b16", '_blank').focus();
+			else if (id == "Finance")
+				window.open("https://www.notion.so/Finance-e1ce381e9d784525abf1df127c5d40b8", '_blank').focus();
+			else if (id == "Self-Care")
+				window.open("https://www.notion.so/Self-Care-e96557c77a5746df8beb94eb666c99c9", '_blank').focus();
+			else if (id == "Travel")
+				window.open("https://www.notion.so/Travel-aa1887aed91343f5bd88afd506c37793", '_blank').focus();
+			else if (id == "Shopping")
+				window.open("https://www.notion.so/Shopping-f9050a69b74f4f1ca253aa63fcf5f2df", '_blank').focus();
+			else if (id == "News & Weather")
+				window.open("https://www.notion.so/News-Weather-d5b8338ebf224b8eb0257a9b44dafed3", '_blank').focus();
+
+		}
+	</script>
+
+
+</body>
+
+</html>

@@ -58,14 +58,17 @@
 <body>
 
 	<nav class="navMenu  border">
-		<a id="mathway" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-solid fa-a"></i> Grades</a>
-		<a id="photomath" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-inbox"></i> Inbox</a>
-		<a id="chatgbt" onclick="navigate(this.id)" href="#"> <i class="fa-brands fa-google-drive"></i> Google Drive</a>
-		<a id="plus ai" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-graduation-cap"></i> College Board</a>
-		<a id="doc ai" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-table"></i> Courses</a>
-		<a id="answer ai" onclick="navigate(this.id)" href="#"> <i class="fa-brands fa-quora"></i> Quizlet</a>
-		<a id="studybuddy+" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-lightbulb"></i> Quizzes</a>
-		<a id="brainly" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-calculator"></i>> Desmos</a>
+		<a id="mathway" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-calculator-simple"></i> Mathway</a>
+		<a id="photomath" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-barcode-read"></i> Photomath</a>
+		<a id="chatgbt" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-comment"></i> ChatGBT</a>
+		<a id="plus ai" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-plus"></i> Plus.AI</a>
+		<a id="chatdoc" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-file-doc"></i> ChatDoc</a>
+		<a id="answer ai" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-hands-holding-diamond"></i> Answer.AI</a>
+		<a id="studybuddy+" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-school"></i> Studybuddy+</a>
+		<a id="cramly.ai" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-robot"></i> Cramly.AI</a>
+		<a id="blackbox.ai" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-code"></i> Blackbox.AI</a>
+		<a id="videohighlight" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-light fa-video"></i> videohighlight</a>
+
 
 
 	</nav>
@@ -73,7 +76,7 @@
 
 	<script>
 
-		let direction = "horizontal";
+		let direction = "vertical";
 		if (direction === "vertical") {
 			document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
 		}
@@ -81,22 +84,25 @@
 
 		function navigate(id) {
 
-			if (id == 'grades')
-				window.open("https://va-chesterfield-psv.edupoint.com/PXP2_Login_Student.aspx?regenerateSessionId=True", '_blank').focus();
-			else if (id == "inbox")
-				window.open("https://mychesterfieldschools.instructure.com/conversations#filter=type=inbox", '_blank').focus();
-			else if (id == "google drive")
-				window.open("https://drive.google.com/drive/u/3/priority", '_blank').focus();
-			else if (id == "college board")
-				window.open("https://www.collegeboard.org/", '_blank').focus();
-			else if (id == "courses")
-				window.open("https://mychesterfieldschools.instructure.com/courses", '_blank').focus();
-			else if (id == "quizlet")
-				window.open("https://quizlet.com/latest", '_blank').focus();
-			else if (id == "quizzes")
-				window.open("https://quizizz.com/join", '_blank').focus();
-			else if (id == "desmos")
-				window.open("https://www.desmos.com/testing/virginia/graphing", '_blank').focus();
+			if (id == 'mathway')
+				window.open("https://www.mathway.com/", '_blank').focus();
+			else if (id == "photomath")
+				window.open("https://photomath.com/en", '_blank').focus();
+			else if (id == "chatgbt")
+				window.open("https://chat.openai.com/auth/login", '_blank').focus();
+			else if (id == "plus ai")
+				window.open("https://workspace.google.com/marketplace/app/plus_ai_for_google_slides/214277172452", '_blank').focus();
+			else if (id == "chatdoc")
+				window.open("https://chatdoc.com/?ref=futuretools.io", '_blank').focus();
+			else if (id == "studybuddy+")
+				window.open("https://chrome.google.com/webstore/detail/studybuddy%20/ehaanimekcjndnhnkojcckjcgalkfgee", '_blank').focus();
+			else if (id == "cramly.ai")
+				window.open("https://www.cramly.ai/", '_blank').focus();
+			else if (id == "blackbox.ai")
+				window.open("https://www.useblackbox.io/", '_blank').focus();
+			else if (id == "videohighlight")
+				window.open("https://videohighlight.com/?ref=futuretools.io", '_blank').focus();
+
 
 		}
 	</script>

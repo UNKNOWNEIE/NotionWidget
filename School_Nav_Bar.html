@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<!-- Google Font -->
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+	<!-------->
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+
+		.navMenu {
+			font-family: 'Advent Pro', sans-serif;
+			padding: 8px;
+			text-align: center;
+			margin: 7px auto;
+			width: fit-content;
+		}
+
+		.navMenu a {
+			color: #272727;
+			text-decoration: none;
+			text-transform: uppercase;
+			display: inline-block;
+			padding: 6px;
+		}
+
+		.background {
+			background-color: #ece5f0;
+		}
+
+		.border {
+			border: 1px solid #cccccc;
+
+		}
+
+		.navMenu a:hover {
+
+			color: #d09c0b;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navMenu  border">
+		<a id="grades" onclick="navigate(this.id)" href="#"> <i class="fa-sharp fa-solid fa-a"></i> Grades</a>
+		<a id="inbox" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-inbox"></i> Inbox</a>
+		<a id="google drive" onclick="navigate(this.id)" href="#"> <i class="fa-brands fa-google-drive"></i> Google Drive</a>
+		<a id="college board" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-graduation-cap"></i> College Board</a>
+		<a id="courses" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-table"></i> Courses</a>
+		<a id="quizlet" onclick="navigate(this.id)" href="#"> <i class="fa-brands fa-quora"></i> Quizlet</a>
+		<a id="quizzes" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-lightbulb"></i> Quizzes</a>
+		<a id="desmos" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-calculator"></i>> Desmos</a>
+
+	</nav>
+
+
+	<script>
+
+		let direction = "horizontal";
+		if (direction === "vertical") {
+			document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
+		}
+
+
+		function navigate(id) {
+
+			if (id == 'grades')
+				window.open("https://va-chesterfield-psv.edupoint.com/PXP2_Login_Student.aspx?regenerateSessionId=True", '_blank').focus();
+			else if (id == "inbox")
+				window.open("https://mychesterfieldschools.instructure.com/conversations#filter=type=inbox", '_blank').focus();
+			else if (id == "google drive")
+				window.open("https://drive.google.com/drive/u/3/priority", '_blank').focus();
+			else if (id == "college board")
+				window.open("https://www.collegeboard.org/", '_blank').focus();
+			else if (id == "courses")
+				window.open("https://mychesterfieldschools.instructure.com/courses", '_blank').focus();
+			else if (id == "quizlet")
+				window.open("https://quizlet.com/latest", '_blank').focus();
+			else if (id == "quizzes")
+				window.open("https://quizizz.com/join", '_blank').focus();
+			else if (id == "desmos")
+				window.open("https://www.desmos.com/testing/virginia/graphing", '_blank').focus();
+
+		}
+	</script>
+
+
+</body>
+
+</html>

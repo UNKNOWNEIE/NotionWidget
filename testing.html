@@ -1,59 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello Samir!</title>
+    <title>Holiday Widget</title>
     <style>
         body {
-            font-family: "Press Start 2P", cursive;
-            background-color: #222;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
             margin: 0;
             padding: 20px;
         }
 
         .widget {
-            background-color: #333;
+            background-color: #fff;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         h1 {
-            font-size: 32px;
-            color: #ffcc00;
+            font-size: 24px;
             margin: 0 0 20px;
         }
 
-        .time {
-            font-size: 56px;
-            color: #ffcc00;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .days {
+            font-size: 48px;
+            color: #333;
+        }
+
+        .holiday {
+            font-size: 24px;
+            color: #666;
+            margin-top: 10px;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script>
-        function getCurrentTime() {
-            var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
-            var timeString = hours + ":" + minutes + ":" + seconds;
+        // Array of holiday dates (in UTC format)
+        var holidays = [
+            { name: "Thanksgiving", date: "2023-11-23" },
+            { name: "Christmas", date: "2023-12-25" },
+            { name: "New Year's Day", date: "2024-01-01" },
+            { name: "Valentine's Day", date: "2024-02-14" },
+            { name: "Easter", date: "2024-04-07" },
+            { name: "Mother's Day", date: "2024-05-12" },
+            { name: "Father's Day", date: "2024-06-16" },
+            // Add more holidays as needed
+        ];
 
-            return timeString;
+        function getNextHoliday() {
+            var today = new Date();
+            today.setUTCHours(0, 0, 0, 0);
+
+            var nextHoliday = null;
+
+            for (var i = 0; i < holidays.length; i++) {
+                var holidayDate = new Date(holidays[i].date);
+                holidayDate.setUTCHours(0, 0, 0, 0);
+
+                if (holidayDate.getTime() >= today.getTime()) {
+                    nextHoliday = holidays[i];
+                    break;
+                }
+            }
+
+            return nextHoliday;
         }
 
-        function displayTime() {
-            var timeElement = document.getElementById("current-time");
-            timeElement.textContent = getCurrentTime();
+        function calculateDaysUntilHoliday(holiday) {
+            var today = new Date();
+            today.setUTCHours(0, 0, 0, 0);
+
+            var holidayDate = new Date(holiday.date);
+            holidayDate.setUTCHours(0, 0, 0, 0);
+
+            var timeDiff = holidayDate.getTime() - today.getTime();
+            var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            return daysDiff;
         }
 
-        setInterval(displayTime, 1000);
+        function displayHolidayCountdown() {
+            var nextHoliday = getNextHoliday();
+
+            if (nextHoliday) {
+                var daysElement = document.getElementById("days-until-holiday");
+                var holidayElement = document.getElementById("next-holiday");
+
+                var daysUntilHoliday = calculateDaysUntilHoliday(nextHoliday);
+                var holidayName = nextHoliday.name;
+
+                daysElement.textContent = daysUntilHoliday;
+                holidayElement.textContent = holidayName;
+            }
+        }
+
+        setInterval(displayHolidayCountdown, 1000);
     </script>
 </head>
 <body>
     <div class="widget">
-        <h1>Hello Samir!</h1>
-        <p class="time" id="current-time"></p>
-    </div>
-</body>
-</html>
+        <h1>Next Holiday Countdown</h1>
+        <p

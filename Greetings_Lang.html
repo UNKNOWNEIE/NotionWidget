@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holiday Widget</title>
+    <title>School Schedule Widget</title>
 
     <style>
         body {
@@ -24,197 +24,82 @@
             box-shadow: 2px 2px 1px 0px #35459b;
         }
 
-        .days {
-            font-size: 3em;
-            margin: 0;
-        }
-
-        .holiday {
+        .day-info {
             font-family: monospace;
             font-size: 2em;
             margin: 0;
         }
 
-        .date {
-            font-family: monospace;
-            font-size: 2em;
+        .class-info {
+            font-size: 1.5em;
             margin: 0;
-        }
-
-        .clock {
-            font-family: monospace;
-            font-size: 2em;
-            display: flex;
-            align-items: center;
-        }
-
-        .time {
-            display: inline-block;
-            min-width: 20px;
-        }
-
-        .colon {
-            font-size: 1em;
-            display: inline-block;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="widget">
-            <div class="greet" id="greet"></div>
-            <div class="date" id="date"></div>
-            <div class="clock">
-                <div class="time" id="hour"></div>
-                <div class="colon">:</div>
-                <div class="time" id="min"></div>
-                <div class="colon">:</div>
-                <div class="time" id="sec"></div>
-            </div>
-            <div class="days" id="days-until-holiday"></div>
-            <div class="holiday" id="next-holiday"></div>
-            <div class="date" id="holiday-date"></div>
+            <div class="day-info" id="day-info"></div>
+            <div class="class-info" id="class-info"></div>
         </div>
     </div>
 
     <script>
-        // Array of holiday dates (in UTC format)
-        var holidays = [
-            { name: "Thanksgiving", date: "2023-11-23" },
-            { name: "Christmas", date: "2023-12-25" },
-            { name: "New Year's Day", date: "2024-01-01" },
-            { name: "Valentine's Day", date: "2024-02-14" },
-            { name: "Easter", date: "2024-04-07" },
-            { name: "Mother's Day", date: "2024-05-12" },
-            { name: "Father's Day", date: "2024-06-16" },
-            // Add more holidays as needed
+        // School and class schedule
+        var schedule = [
+            { date: "2023-09-01", classType: "Even" },
+            { date: "2023-09-04", classType: "Odd" },
+            { date: "2023-09-25", classType: "Even" },
+            { date: "2023-11-06", classType: "Odd" },
+            { date: "2023-11-07", classType: "Even" },
+            { startDate: "2023-11-22", endDate: "2023-11-24", classType: "Odd" },
+            { startDate: "2023-12-22", endDate: "2024-01-05", classType: "No School" },
+            { date: "2024-01-15", classType: "Even" },
+            { date: "2024-02-19", classType: "Odd" },
+            { date: "2024-03-29", classType: "Odd" },
+            { startDate: "2024-04-01", endDate: "2024-04-05", classType: "Even" },
+            { date: "2024-04-10", classType: "Odd" },
         ];
 
-        function getNextHoliday() {
-            var today = new Date();
-            today.setUTCHours(0, 0, 0, 0);
+        function checkSchoolSchedule(today) {
+            var currentDate = today.toISOString().slice(0, 10);
 
-            var nextHoliday = null;
+            for (var i = 0; i < schedule.length; i++) {
+                var scheduleItem = schedule[i];
 
-            for (var i = 0; i < holidays.length; i++) {
-                var holidayDate = new Date(holidays[i].date);
-                holidayDate.setUTCHours(0, 0, 0, 0);
+                if (scheduleItem.date === currentDate) {
+                    return scheduleItem.classType;
+                } else if (scheduleItem.startDate && scheduleItem.endDate) {
+                    var startDate = new Date(scheduleItem.startDate);
+                    var endDate = new Date(scheduleItem.endDate);
 
-                if (holidayDate.getTime() >= today.getTime()) {
-                    nextHoliday = holidays[i];
-                    break;
+                    if (today >= startDate && today <= endDate) {
+                        return scheduleItem.classType;
+                    }
                 }
             }
 
-            return nextHoliday;
+            return "School";
         }
 
-        function calculateDaysUntilHoliday(holiday) {
+        function displaySchoolInfo() {
             var today = new Date();
-            today.setUTCHours(0, 0, 0, 0);
+            var dayInfoElement = document.getElementById("day-info");
+            var classInfoElement = document.getElementById("class-info");
 
-            var holidayDate = new Date(holiday.date);
-            holidayDate.setUTCHours(0, 0, 0, 0);
+            var schoolStatus = checkSchoolSchedule(today);
 
-            var timeDiff = holidayDate.getTime() - today.getTime();
-            var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-            return daysDiff;
-        }
-
-        function displayHolidayCountdown() {
-            var nextHoliday = getNextHoliday();
-
-            if (nextHoliday) {
-                var daysElement = document.getElementById("days-until-holiday");
-                var holidayElement = document.getElementById("next-holiday");
-                var dateElement = document.getElementById("holiday-date");
-
-                var daysUntilHoliday = calculateDaysUntilHoliday(nextHoliday);
-                var holidayName = nextHoliday.name;
-                var holidayDate = new Date(nextHoliday.date).toLocaleDateString();
-
-                daysElement.textContent = daysUntilHoliday + " days until";
-                holidayElement.textContent = holidayName;
-                dateElement.textContent = holidayDate;
+            if (schoolStatus === "No School") {
+                dayInfoElement.textContent = "No School Today";
+                classInfoElement.textContent = "";
+            } else {
+                var dayType = today.getDate() % 2 === 0 ? "Even" : "Odd";
+                dayInfoElement.textContent = "School Today";
+                classInfoElement.textContent = "Class Type: " + dayType;
             }
         }
 
-        function displayGreetings(today) {
-            var hrs = today.getHours();
-            var name = "Samir"; // Set your name here
-            var greet = "";
-
-            if (hrs < 12)
-                greet = "Good morning, " + name;
-            else if (hrs >= 12 && hrs <= 17)
-                greet = "Good afternoon, " + name;
-            else if (hrs >= 17 && hrs <= 24)
-                greet = "Good evening, " + name;
-
-            document.getElementById("greet").innerHTML = greet;
-        }
-
-        function displayDate(today) {
-            const days = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-            ];
-            const monthNames = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-            ];
-
-            var dayName = days[today.getDay()];
-            var monthName = monthNames[today.getMonth()];
-            var date = today.getDate();
-            var year = today.getFullYear();
-            document.getElementById("date").innerHTML =
-                dayName + ", " + monthName + " " + date + ", " + year;
-        }
-
-        function displayClock(today) {
-            var hour = padZeros(today.getHours());
-            var minutes = padZeros(today.getMinutes());
-            var seconds = padZeros(today.getSeconds());
-
-            document.getElementById("hour").innerHTML = hour;
-            document.getElementById("min").innerHTML = minutes;
-            document.getElementById("sec").innerHTML = seconds;
-        }
-
-        function padZeros(num) {
-            if (num < 10) {
-                num = "0" + num;
-            }
-            return num;
-        }
-
-        function displayWidget() {
-            var today = new Date();
-            displayGreetings(today);
-            displayDate(today);
-            displayClock(today);
-            displayHolidayCountdown();
-            setTimeout(displayWidget, 500);
-        }
-
-        displayWidget();
+        displaySchoolInfo();
     </script>
 </body>
 </html>

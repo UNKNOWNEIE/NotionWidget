@@ -33,6 +33,11 @@
             color: #666;
             margin-top: 10px;
         }
+
+        .date {
+            font-size: 18px;
+            color: #999;
+        }
     </style>
     <script>
         // Array of holiday dates (in UTC format)
@@ -85,12 +90,15 @@
             if (nextHoliday) {
                 var daysElement = document.getElementById("days-until-holiday");
                 var holidayElement = document.getElementById("next-holiday");
+                var dateElement = document.getElementById("holiday-date");
 
                 var daysUntilHoliday = calculateDaysUntilHoliday(nextHoliday);
                 var holidayName = nextHoliday.name;
+                var holidayDate = new Date(nextHoliday.date).toLocaleDateString();
 
                 daysElement.textContent = daysUntilHoliday;
                 holidayElement.textContent = holidayName;
+                dateElement.textContent = holidayDate;
             }
         }
 
@@ -100,4 +108,9 @@
 <body>
     <div class="widget">
         <h1>Next Holiday Countdown</h1>
-        <p
+        <p class="days" id="days-until-holiday"></p>
+        <p class="holiday" id="next-holiday"></p>
+        <p class="date" id="holiday-date"></p>
+    </div>
+</body>
+</html>

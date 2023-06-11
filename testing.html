@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Samir!</title>
+    <script>
+        function getCurrentTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            var timeString = hours + ":" + minutes + ":" + seconds;
+
+            return timeString;
+        }
+
+        function displayTime() {
+            var timeElement = document.getElementById("current-time");
+            timeElement.innerHTML = "Hello Samir! The current time is: " + getCurrentTime();
+        }
+
+        setInterval(displayTime, 1000);
+    </script>
+</head>
+<body>
+    <div id="current-time"></div>
+</body>
+</html>

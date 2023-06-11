@@ -2,6 +2,31 @@
 <html>
 <head>
     <title>Hello Samir!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .widget {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+
+        .time {
+            font-size: 36px;
+            color: #333;
+        }
+    </style>
     <script>
         function getCurrentTime() {
             var currentTime = new Date();
@@ -15,13 +40,16 @@
 
         function displayTime() {
             var timeElement = document.getElementById("current-time");
-            timeElement.innerHTML = "Hello Samir! The current time is: " + getCurrentTime();
+            timeElement.textContent = getCurrentTime();
         }
 
         setInterval(displayTime, 1000);
     </script>
 </head>
 <body>
-    <div id="current-time"></div>
+    <div class="widget">
+        <h1>Hello Samir!</h1>
+        <p class="time" id="current-time"></p>
+    </div>
 </body>
 </html>

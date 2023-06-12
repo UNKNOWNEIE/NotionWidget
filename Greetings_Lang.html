@@ -60,29 +60,55 @@
             { startDate: "2024-04-10", endDate: "2024-04-10", classType: "No School" },
         ];
 
-        function checkSchoolSchedule(today) {
-            var currentDate = today.toISOString().slice(0, 10);
+        var specialDates = [
+            { date: "2023-06-11", note: "You're gay" },
+            { date: "2024-08-23", note: "First day of school" },
+            { date: "2023-10-26", note: "End of Q1" },
+            { date: "2023-10-27", note: "Student early release" },
+            { date: "2024-01-18", note: "End of Q1" },
+            { date: "2024-01-19", note: "Student early release" },
+            { date: "2024-03-21", note: "End of Q3" },
+            { date: "2024-03-22", note: "Student early release" },
+            { date: "2024-05-08", note: "AP CSA EXAM" },
+            { date: "2024-05-09", note: "AP PSY EXAM" },
+            { date: "2024-05-16", note: "AP BIO EXAM" },
+            { date: "2024-05-22", note: "Graduation" },
+        ];
 
-            // Check if it's within the summer break period
-            var summerStartDate = "2023-06-11";
-            var summerEndDate = "2023-08-22";
+        function checkSpecialDates(today) {
+            var currentDate = formatDate(today);
 
-            if (currentDate >= summerStartDate && currentDate <= summerEndDate) {
-                return "No School";
+            for (var i = 0; i < specialDates.length; i++) {
+                if (currentDate === specialDates[i].date) {
+                    return specialDates[i].note;
+                }
             }
 
+            return "";
+        }
+
+        function checkSchoolSchedule(today) {
+            var currentDate = formatDate(today);
+
             for (var i = 0; i < schedule.length; i++) {
-                var scheduleItem = schedule[i];
+                var startDate = formatDate(schedule[i].startDate);
+                var endDate = formatDate(schedule[i].endDate);
 
-                var startDate = new Date(scheduleItem.startDate);
-                var endDate = new Date(scheduleItem.endDate);
-
-                if (today >= startDate && today <= endDate) {
-                    return scheduleItem.classType;
+                if (currentDate >= startDate && currentDate <= endDate) {
+                    return schedule[i].classType;
                 }
             }
 
             return "School";
+        }
+
+        function formatDate(dateString) {
+            var dateParts = dateString.split("-");
+            var year = dateParts[0];
+            var month = dateParts[1];
+            var day = dateParts[2];
+
+            return year + "-" + month.padStart(2, "0") + "-" + day.padStart(2, "0");
         }
 
         function displaySchoolInfo() {
@@ -91,8 +117,12 @@
             var classInfoElement = document.getElementById("class-info");
 
             var schoolStatus = checkSchoolSchedule(today);
+            var specialNote = checkSpecialDates(today);
 
-            if (schoolStatus === "No School") {
+            if (specialNote !== "") {
+                dayInfoElement.textContent = specialNote;
+                classInfoElement.textContent = "";
+            } else if (schoolStatus === "No School") {
                 dayInfoElement.textContent = "No School Today";
                 classInfoElement.textContent = "";
             } else {

@@ -34,6 +34,11 @@
             font-size: 1.5em;
             margin: 0;
         }
+
+        .special-dates {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -41,6 +46,7 @@
         <div class="widget">
             <div class="day-info" id="day-info"></div>
             <div class="class-info" id="class-info"></div>
+            <div class="special-dates" id="special-dates"></div>
         </div>
     </div>
 
@@ -115,6 +121,7 @@
             var today = new Date();
             var dayInfoElement = document.getElementById("day-info");
             var classInfoElement = document.getElementById("class-info");
+            var specialDatesElement = document.getElementById("special-dates");
 
             var schoolStatus = checkSchoolSchedule(today);
             var specialNote = checkSpecialDates(today);
@@ -122,13 +129,21 @@
             if (specialNote !== "") {
                 dayInfoElement.textContent = specialNote;
                 classInfoElement.textContent = "";
+                specialDatesElement.textContent = "";
             } else if (schoolStatus === "No School") {
                 dayInfoElement.textContent = "No School Today";
                 classInfoElement.textContent = "";
+                specialDatesElement.textContent = "";
             } else {
                 var dayType = today.getDate() % 2 === 0 ? "Even" : "Odd";
                 dayInfoElement.textContent = "School Today";
                 classInfoElement.textContent = "Class Type: " + dayType;
+
+                var specialDatesText = "Special Dates:";
+                for (var i = 0; i < specialDates.length; i++) {
+                    specialDatesText += "\n- " + specialDates[i].date + ": " + specialDates[i].note;
+                }
+                specialDatesElement.textContent = specialDatesText;
             }
         }
 

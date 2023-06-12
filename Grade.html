@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grade Calculator</title>
+  <style>
+    body {
+      background-color: #ff;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .calculator {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #000;
+      border: 1px solid #00ff7f;
+      border-radius: 5px;
+      box-shadow: 0 0 20px #00ff7f;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 20px #00ff7f;
+      }
+      100% {
+        box-shadow: 0 0 40px #00ff7f, 0 0 80px #00ff7f, 0 0 120px #00ff7f;
+      }
+    }
+
+    .calculator h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff7f;
+    }
+
+    .calculator label {
+      display: block;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px #00ff7f;
+    }
+
+    .calculator input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-bottom: 2px solid #00ff7f;
+      outline: none;
+    }
+
+    .calculator input:focus {
+      border-bottom: 2px solid #00ff7f;
+    }
+
+    .calculator button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00ff7f;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .calculator button:hover {
+      background-color: #00cc66;
+    }
+
+    .calculator .result {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #111;
+      border: 1px solid #00ff7f;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 0 10px #00ff7f;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Grade Calculator</h2>
+    <label for="score">Score:</label>
+    <input type="number" id="score" placeholder="Enter score" min="0" max="100">
+    <label for="total">Total:</label>
+    <input type="number" id="total" placeholder="Enter total" min="0" max="100">
+    <button onclick="calculateGrade()">Calculate</button>
+    <div class="result" id="gradeResult"></div>
+    <div class="result" id="percentageResult"></div>
+  </div>
+
+  <script>
+    function calculateGrade() {
+      var score = parseFloat(document.getElementById('score').value);
+      var total = parseFloat(document.getElementById('total').value);
+
+      if (isNaN(score) || isNaN(total) || score < 0 || total <= 0 || score > total) {
+        document.getElementById('gradeResult').innerHTML = 'Invalid input. Please enter valid scores.';
+        document.getElementById('percentageResult').innerHTML = '';
+      } else {
+        var percentage = (score / total) * 100;
+        var grade;
+
+        if (percentage >= 90) {
+          grade = 'A';
+        } else if (percentage >= 80) {
+          grade = 'B';
+        } else if (percentage >= 70) {
+          grade = 'C';
+        } else if (percentage >= 60) {
+          grade = 'D';
+        } else {
+          grade = 'F';
+        }
+
+        document.getElementById('gradeResult').innerHTML = 'Your grade is: ' + grade;
+        document.getElementById('percentageResult').innerHTML = 'Percentage: ' + percentage.toFixed(2) + '%';
+      }
+    }
+  </script>
+</body>
+</html>

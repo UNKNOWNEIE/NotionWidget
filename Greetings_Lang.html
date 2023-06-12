@@ -47,35 +47,38 @@
     <script>
         // School and class schedule
         var schedule = [
-            { date: "2023-09-01", classType: "Even" },
-            { date: "2023-09-04", classType: "Odd" },
-            { date: "2023-09-25", classType: "Even" },
-            { date: "2023-11-06", classType: "Odd" },
-            { date: "2023-11-07", classType: "Even" },
+            { startDate: "2023-09-01", endDate: "2023-09-01", classType: "Even" },
+            { startDate: "2023-09-04", endDate: "2023-09-04", classType: "Odd" },
+            { startDate: "2023-09-25", endDate: "2023-09-25", classType: "Even" },
+            { startDate: "2023-11-06", endDate: "2023-11-07", classType: "Odd" },
             { startDate: "2023-11-22", endDate: "2023-11-24", classType: "Odd" },
             { startDate: "2023-12-22", endDate: "2024-01-05", classType: "No School" },
-            { date: "2024-01-15", classType: "Even" },
-            { date: "2024-02-19", classType: "Odd" },
-            { date: "2024-03-29", classType: "Odd" },
+            { startDate: "2024-01-15", endDate: "2024-01-15", classType: "Even" },
+            { startDate: "2024-02-19", endDate: "2024-02-19", classType: "Odd" },
+            { startDate: "2024-03-29", endDate: "2024-03-29", classType: "Odd" },
             { startDate: "2024-04-01", endDate: "2024-04-05", classType: "Even" },
-            { date: "2024-04-10", classType: "Odd" },
+            { startDate: "2024-04-10", endDate: "2024-04-10", classType: "Odd" },
         ];
 
         function checkSchoolSchedule(today) {
             var currentDate = today.toISOString().slice(0, 10);
 
+            // Check if it's within the summer break period
+            var summerStartDate = "2023-06-11";
+            var summerEndDate = "2023-08-22";
+
+            if (currentDate >= summerStartDate && currentDate <= summerEndDate) {
+                return "No School";
+            }
+
             for (var i = 0; i < schedule.length; i++) {
                 var scheduleItem = schedule[i];
 
-                if (scheduleItem.date === currentDate) {
-                    return scheduleItem.classType;
-                } else if (scheduleItem.startDate && scheduleItem.endDate) {
-                    var startDate = new Date(scheduleItem.startDate);
-                    var endDate = new Date(scheduleItem.endDate);
+                var startDate = new Date(scheduleItem.startDate);
+                var endDate = new Date(scheduleItem.endDate);
 
-                    if (today >= startDate && today <= endDate) {
-                        return scheduleItem.classType;
-                    }
+                if (today >= startDate && today <= endDate) {
+                    return scheduleItem.classType;
                 }
             }
 

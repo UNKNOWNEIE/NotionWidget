@@ -1,38 +1,233 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Minimal Calculator</title>
   <style>
-    .container {
-      width: 200px;
-      margin: 20px auto;
+    #root {
+      background: #EEEBD0;
+      width: 350px;
+      height: 170px;
+      margin: auto;
+      border-radius: 1%;
+      box-shadow: 5px 5px 2px #888888;
+      margin-top: 3px;
     }
-    input {
-      width: 100%;
-      margin-bottom: 5px;
+
+    body {
+      color: #3A3335;
+      font-family: VT323;
+      font-weight: bold;
     }
-    button {
-      width: 100%;
+
+    .pomodoro {
+      height: 70px;
+      display: flex;
+      background: #FEDC3D;
+      justify-content: center;
+      box-shadow: 1px 1px 1px #888888;
+    }
+
+    .pomodoro button {
+      padding: 5px 10px 5px 10px;
+      margin-top: 100%;
+      border: none;
+      background: #01ABAA;
+      font-size: 15px;
+      font-family: VT323;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 3px 3px 2px #888888;
+    }
+
+    .pomodoro button:active {
+      background: #079fb0;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .pomodoro button:focus {
+      outline: 0;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .pomodoro .timer {
+      font-size: 75px;
+      margin: 0 20px;
+    }
+
+    .start-pause {
+      display: flex;
+      justify-content: center;
+    }
+
+    .start-pause button {
+      border: none;
+      background: #01ABAA;
+      font-family: VT323;
+      font-weight: bold;
+      margin: 15px;
+      box-shadow: 3px 3px 2px #888888;
+      width: 90px;
+      font-size: 25px;
+    }
+
+    .start-pause button:active {
+      background: #079fb0;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .start-pause button:focus {
+      outline: 0;
+    }
+
+    .reset {
+      text-align: center;
+    }
+
+    .reset button {
+      border: none;
+      background: #DC5754;
+      font-size: 25px;
+      font-family: VT323;
+      font-weight: bold;
+      box-shadow: 3px 3px 2px #888888;
+      margin-left: 115px;
+      width: 90px;
+    }
+
+    .reset button:active {
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .reset button:focus {
+      outline: 0;
+    }
+
+    .contain-it {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .break-length {
+      margin-left: 30px;
+    }
+
+    .break-time {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .break-time button {
+      border: none;
+      background: #DC5754;
+      box-shadow: 1px 1px 1px #888888;
+    }
+
+    .break-time button:active {
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .break-time button:focus {
+      outline: 0;
+    }
+
+    .break-text {
+      font-size: 20px;
+      padding: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <input type="text" id="num1" placeholder="Enter number 1">
-    <input type="text" id="num2" placeholder="Enter number 2">
-    <button onclick="calculate()">Calculate</button>
-    <p id="result"></p>
+  <div id="root">
+    <div class="pomodoro">
+      <div class="title">Pomodoro Timer</div>
+      <div class="timer">25:00</div>
+    </div>
+    <div class="start-pause">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+    </div>
+    <div class="reset">
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="contain-it">
+      <div class="break-length">
+        <div class="break-time">
+          <button id="decrementBtn">-</button>
+          <div class="break-text" id="breakLength">Break Length</div>
+          <button id="incrementBtn">+</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    function calculate() {
-      var num1 = parseFloat(document.getElementById('num1').value);
-      var num2 = parseFloat(document.getElementById('num2').value);
-      
-      var result = num1 + num2;
-      
-      document.getElementById('result').innerHTML = "Result: " + result;
+    const timerElement = document.querySelector(".timer");
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const decrementBtn = document.getElementById("decrementBtn");
+    const incrementBtn = document.getElementById("incrementBtn");
+    const breakLengthElement = document.getElementById("breakLength");
+
+    let timeLeft = 1500; // 25 minutes in seconds
+    let breakLength = 5;
+
+    function startTimer() {
+      let minutes, seconds;
+
+      const countdown = setInterval(function () {
+        minutes = Math.floor(timeLeft / 60);
+        seconds = timeLeft % 60;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerElement.textContent = minutes + ":" + seconds;
+
+        if (timeLeft > 0) {
+          timeLeft--;
+        } else {
+          clearInterval(countdown);
+          timerElement.textContent = "00:00";
+        }
+      }, 1000);
     }
+
+    function pauseTimer() {
+      clearInterval(countdown);
+    }
+
+    function resetTimer() {
+      clearInterval(countdown);
+      timeLeft = 1500;
+      timerElement.textContent = "25:00";
+    }
+
+    function decrementBreakLength() {
+      if (breakLength > 1) {
+        breakLength--;
+        breakLengthElement.textContent = "Break Length: " + breakLength;
+      }
+    }
+
+    function incrementBreakLength() {
+      if (breakLength < 60) {
+        breakLength++;
+        breakLengthElement.textContent = "Break Length: " + breakLength;
+      }
+    }
+
+    startBtn.addEventListener("click", startTimer);
+    pauseBtn.addEventListener("click", pauseTimer);
+    resetBtn.addEventListener("click", resetTimer);
+    decrementBtn.addEventListener("click", decrementBreakLength);
+    incrementBtn.addEventListener("click", incrementBreakLength);
   </script>
 </body>
 </html>

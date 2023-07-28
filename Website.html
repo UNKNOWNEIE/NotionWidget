@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f6f6f6;
+    }
+
+    .foodMenu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 800px;
+      margin: 50px auto;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    .foodItem {
+      flex-basis: 150px;
+      text-align: center;
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .foodItem:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .foodItem i {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #d09c0b;
+    }
+
+    .foodItem h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #272727;
+    }
+
+    .foodItem p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="foodMenu">
+
+    <div class="foodItem">
+      <i class="fas fa-hamburger"></i>
+      <h3>Cheeseburger</h3>
+      <p>A delicious cheeseburger with beef patty, cheese, lettuce, and pickles.</p>
+    </div>
+
+    <div class="foodItem">
+      <i class="fas fa-pizza-slice"></i>
+      <h3>Pepperoni Pizza</h3>
+      <p>A classic pepperoni pizza topped with mozzarella and tomato sauce.</p>
+    </div>
+
+    <div class="foodItem">
+      <i class="fas fa-fish"></i>
+      <h3>Grilled Salmon</h3>
+      <p>Freshly grilled salmon served with steamed vegetables and lemon.</p>
+    </div>
+
+    <div class="foodItem">
+      <i class="fas fa-salad"></i>
+      <h3>Garden Salad</h3>
+      <p>A healthy garden salad with mixed greens, cherry tomatoes, and vinaigrette dressing.</p>
+    </div>
+
+    <div class="foodItem">
+      <i class="fas fa-ice-cream"></i>
+      <h3>Ice Cream Sundae</h3>
+      <p>A delightful ice cream sundae with chocolate sauce and whipped cream.</p>
+    </div>
+
+    <div class="foodItem">
+      <i class="fas fa-coffee"></i>
+      <h3>Coffee</h3>
+      <p>A freshly brewed cup of coffee to complement your meal.</p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

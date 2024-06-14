@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+
+<!-- Author: Shorouk Abdelaziz  https://shorouk.dev -->
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Socials</title>
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
   <style>
     * {
       margin: 0;
@@ -17,48 +24,31 @@
       display: grid;
       place-items: center;
       height: 100vh;
-      background-color: transparent;
+      background-color: #ffffff; /* Change this to match Notion's background color */
     }
 
     .wrapper {
-      display: inline-flex;
       padding-top: 10px;
+      display: inline-flex;
     }
 
     .fill {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       padding: 2%;
       color: #fff;
       outline: 0;
-      border: 2px solid black;
+      border: 2px solid transparent;
       cursor: pointer;
       position: relative;
       background-color: rgba(0, 0, 0, 0);
-      margin: 5px;
+      margin: 10px;
       border-radius: 50%;
-      animation: glowCycle 6s infinite;
-    }
-
-    @keyframes glowCycle {
-      0%, 100% {
-        box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
-      }
-      10%, 90% {
-        box-shadow: none;
-      }
-    }
-
-    @keyframes glowingOutline {
-      0% {
-        box-shadow: 0 0 5px #ff0050, 0 0 15px #ff0050, 0 0 30px #ff0050, 0 0 60px #ff0050;
-      }
-      50% {
-        box-shadow: 0 0 20px #ff0050, 0 0 30px #ff0050, 0 0 60px #ff0050, 0 0 100px #ff0050;
-      }
-      100% {
-        box-shadow: 0 0 5px #ff0050, 0 0 15px #ff0050, 0 0 30px #ff0050, 0 0 60px #ff0050;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
 
     .fill::after {
@@ -77,52 +67,115 @@
       left: 0px;
     }
 
+    .fill:hover {
+      border-color: currentColor;
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+    }
+
+    .fill::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 15px currentColor;
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 15px currentColor;
+      }
+      50% {
+        box-shadow: 0 0 30px currentColor;
+      }
+      100% {
+        box-shadow: 0 0 15px currentColor;
+      }
+    }
+
     .icon {
-      font-size: 1em;
+      font-size: 1.5em;
     }
 
-    .blog:hover, .blog::after {
+    .blog:hover,
+    .blog::after,
+    .blog::before {
       background-color: #ffbd2f;
+      color: #ffbd2f;
     }
 
-    .email:hover, .email::after {
+    .email:hover,
+    .email::after,
+    .email::before {
       background-color: #23c8c8;
+      color: #23c8c8;
     }
 
-    .facebook:hover, .facebook::after {
+    .facebook:hover,
+    .facebook::after,
+    .facebook::before {
       background-color: #4267B2;
+      color: #4267B2;
     }
 
-    .instagram:hover, .instagram::after {
+    .instagram:hover,
+    .instagram::after,
+    .instagram::before {
       background: #f86ee1;
+      color: #f86ee1;
     }
 
-    .linkedin:hover, .linkedin::after {
+    .linkedin:hover,
+    .linkedin::after,
+    .linkedin::before {
       background-color: #0e76a8;
+      color: #0e76a8;
     }
 
-    .twitter:hover, .twitter::after {
+    .twitter:hover,
+    .twitter::after,
+    .twitter::before {
       background-color: #26a7de;
+      color: #26a7de;
     }
 
-    .reddit:hover, .reddit::after {
+    .reddit:hover,
+    .reddit::after,
+    .reddit::before {
       background-color: #ff4500;
+      color: #ff4500;
     }
 
-    .tiktok:hover, .tiktok::after {
+    .tiktok:hover,
+    .tiktok::after,
+    .tiktok::before {
       background-color: #ff0050;
+      color: #ff0050;
     }
 
-    .youtube:hover, .youtube::after {
+    .youtube:hover,
+    .youtube::after,
+    .youtube::before {
       background-color: #FF0000;
+      color: #FF0000;
     }
 
-    .pinterest:hover, .pinterest::after {
+    .pinterest:hover,
+    .pinterest::after,
+    .pinterest::before {
       background-color: #c8232c;
+      color: #c8232c;
     }
 
-    .telegram:hover, .telegram::after {
+    .telegram:hover,
+    .telegram::after,
+    .telegram::before {
       background-color: #2AABEE;
+      color: #2AABEE;
     }
 
     .social {
@@ -134,72 +187,109 @@
     .social:hover {
       color: #fff;
     }
-
   </style>
+
 </head>
+
 <body>
+
   <div class="wrapper">
+
+    <!-- Start blog Icon -->
     <div id="blog" onclick="navigate(this.id)" class="fill blog">
       <span class="icon"><i class="fa-solid fa-blog"></i></span>
     </div>
+    <!-- End blog Icon -->
+
+    <!-- Start email Icon -->
     <div id="email" onclick="navigate(this.id)" class="fill email">
-      <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+      <span class="icon email"><i class="fa-solid fa-envelope"></i></span>
     </div>
+    <!-- End email Icon -->
+
+    <!-- Start facebook Icon -->
     <div id="facebook" onclick="navigate(this.id)" class="fill facebook">
       <span class="icon"><i class="fab fa-facebook"></i></span>
     </div>
+    <!-- End facebook Icon -->
+
+    <!-- Start instagram Icon -->
     <div id="instagram" onclick="navigate(this.id)" class="fill instagram">
       <span class="icon"><i class="fab fa-instagram"></i></span>
     </div>
+    <!-- End instagram Icon -->
+
+    <!-- Start linkedin Icon -->
     <div id="linkedin" onclick="navigate(this.id)" class="fill linkedin">
       <span class="icon"><i class="fab fa-linkedin"></i></span>
     </div>
+    <!-- End linkedin Icon -->
+
+    <!-- Start twitter Icon -->
     <div id="twitter" onclick="navigate(this.id)" class="fill twitter">
       <span class="icon"><i class="fab fa-twitter"></i></span>
     </div>
+    <!-- End twitter Icon -->
+
+    <!-- Start reddit Icon -->
     <div id="reddit" onclick="navigate(this.id)" class="fill reddit">
       <span class="icon"><i class="fab fa-reddit"></i></span>
     </div>
+    <!-- End reddit Icon -->
+
+    <!-- Start tiktok Icon -->
     <div id="tiktok" onclick="navigate(this.id)" class="fill tiktok">
       <span class="icon"><i class="fab fa-tiktok"></i></span>
     </div>
+    <!-- End tiktok Icon -->
+
+    <!-- Start youtube Icon -->
     <div id="youtube" onclick="navigate(this.id)" class="fill youtube">
       <span class="icon"><i class="fab fa-youtube"></i></span>
     </div>
+    <!-- End youtube Icon -->
+
+    <!-- Start pinterest Icon -->
     <div id="pinterest" onclick="navigate(this.id)" class="fill pinterest">
       <span class="icon"><i class="fab fa-pinterest"></i></span>
     </div>
+    <!-- End pinterest Icon -->
+
+    <!-- Start telegram Icon -->
     <div id="telegram" onclick="navigate(this.id)" class="fill telegram">
       <span class="icon"><i class="fab fa-telegram"></i></span>
     </div>
+    <!-- End telegram Icon -->
+
   </div>
 
   <script>
     function navigate(id) {
-      if (id === "blog") {
+      if (id === "blog")
         window.open("https://blog.shorouk.dev", '_blank').focus();
-      } else if (id === "email") {
+      else if (id === "email")
         window.open("mailto:someone@yoursite.com", '_blank').focus();
-      } else if (id === "facebook") {
+      else if (id === "facebook")
         window.open("https://facebook.com/", '_blank').focus();
-      } else if (id === "instagram") {
+      else if (id === "instagram")
         window.open("instagram.com", '_blank').focus();
-      } else if (id === "linkedin") {
+      else if (id === "linkedin")
         window.open("https://www.linkedin.com/", '_blank').focus();
-      } else if (id === "twitter") {
+      else if (id === "twitter")
         window.open("https://twitter.com/", '_blank').focus();
-      } else if (id === "reddit") {
+      else if (id === "reddit")
         window.open("https://www.reddit.com/", '_blank').focus();
-      } else if (id === "tiktok") {
+      else if (id === "tiktok")
         window.open("https://www.tiktok.com/", '_blank').focus();
-      } else if (id === "youtube") {
+      else if (id === "youtube")
         window.open("https://www.youtube.com/", '_blank').focus();
-      } else if (id === "pinterest") {
+      else if (id === "pinterest")
         window.open("https://www.pinterest.com/", '_blank').focus();
-      } else if (id === "telegram") {
+      else if (id === "telegram")
         window.open("https://web.telegram.org/", '_blank').focus();
-      }
     }
   </script>
+
 </body>
+
 </html>

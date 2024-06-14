@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Weather Widget</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+        
+        .weather-widget {
+            text-align: center;
+            color: #fff;
+        }
+        
+        .weather-widget h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .weather-widget #weather {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .weather-widget .day {
+            margin: 10px;
+            padding: 20px;
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px #0ff;
+            transition: box-shadow 0.3s ease-in-out;
+            width: 150px;
+        }
+        
+        .weather-widget .day:hover {
+            box-shadow: 0 0 30px #0ff;
+        }
+        
+        .weather-widget .day h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .weather-widget .day p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-widget">
+        <h1>Richmond, VA Weather</h1>
+        <div id="weather"></div>
+    </div>
+    <script>
+        const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+        const city = 'Richmond';
+        const state = 'VA';
+        const country = 'US';
+        
+        async function getWeather() {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&units=imperial&cnt=7&appid=${apiKey}`);
+            const data = await response.json();
+            displayWeather(data);
+        }
+        
+        function displayWeather(data) {
+            const weatherContainer = document.getElementById('weather');
+            weatherContainer.innerHTML = '';
+        
+            data.list.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('day');
+                dayElement.innerHTML = `
+                    <h2>${new Date(day.dt * 1000).toLocaleDateString()}</h2>
+                    <p>Temp: ${day.main.temp}°F</p>
+                    <p>Weather: ${day.weather[0].description}</p>
+                `;
+                weatherContainer.appendChild(dayElement);
+            });
+        }
+        
+        getWeather();
+    </script>
+</body>
+</html>

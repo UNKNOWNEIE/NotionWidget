@@ -20,53 +20,32 @@
     body {
       display: grid;
       place-items: center;
+      background-color: transparent;
       height: 100vh;
-      background-color: #000000; /* Black background */
     }
 
     .wrapper {
-      padding-top: 10px;
       display: inline-flex;
     }
 
     .fill {
       width: 60px;
       height: 60px;
-      padding: 2%;
-      color: #fff;
-      outline: 0;
-      border: 2px solid transparent;
-      cursor: pointer;
-      position: relative;
-      background-color: rgba(0, 0, 0, 0);
-      margin: 10px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease-in-out;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-
-    .fill::after {
-      content: "";
-      width: 100%;
-      z-index: -1;
-      position: absolute;
-      height: 100%;
-      top: 5px;
-      left: 5px;
-      transition: 0.2s;
-    }
-
-    .fill:hover::after {
-      top: 0px;
-      left: 0px;
+      color: #fff;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      position: relative;
+      margin: 10px;
+      cursor: pointer;
+      transition: color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
 
     .fill:hover {
-      border-color: currentColor;
-      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+      color: #000;
+      transform: scale(1.1);
     }
 
     .fill::before {
@@ -77,114 +56,75 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      box-shadow: 0 0 15px currentColor;
-      animation: pulse 2s infinite;
-      z-index: -1;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 15px currentColor;
-      }
-
-      50% {
-        box-shadow: 0 0 30px currentColor;
-      }
-
-      100% {
-        box-shadow: 0 0 15px currentColor;
-      }
+    .fill:hover::before {
+      background: transparent;
+      box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
     }
 
     .icon {
       font-size: 1.5em;
-    }
-
-    .blog:hover,
-    .blog::after,
-    .blog::before {
-      background-color: #ffbd2f;
-      color: #ffbd2f;
-    }
-
-    .email:hover,
-    .email::after,
-    .email::before {
-      background-color: #23c8c8;
-      color: #23c8c8;
-    }
-
-    .facebook:hover,
-    .facebook::after,
-    .facebook::before {
-      background-color: #4267B2;
-      color: #4267B2;
-    }
-
-    .instagram:hover,
-    .instagram::after,
-    .instagram::before {
-      background: #f86ee1;
-      color: #f86ee1;
-    }
-
-    .linkedin:hover,
-    .linkedin::after,
-    .linkedin::before {
-      background-color: #0e76a8;
-      color: #0e76a8;
-    }
-
-    .twitter:hover,
-    .twitter::after,
-    .twitter::before {
-      background-color: #26a7de;
-      color: #26a7de;
-    }
-
-    .reddit:hover,
-    .reddit::after,
-    .reddit::before {
-      background-color: #ff4500;
-      color: #ff4500;
-    }
-
-    .tiktok:hover,
-    .tiktok::after,
-    .tiktok::before {
-      background-color: #ff0050;
-      color: #ff0050;
-    }
-
-    .youtube:hover,
-    .youtube::after,
-    .youtube::before {
-      background-color: #FF0000;
-      color: #FF0000;
-    }
-
-    .pinterest:hover,
-    .pinterest::after,
-    .pinterest::before {
-      background-color: #c8232c;
-      color: #c8232c;
-    }
-
-    .telegram:hover,
-    .telegram::after,
-    .telegram::before {
-      background-color: #2AABEE;
-      color: #2AABEE;
-    }
-
-    .social {
       position: relative;
-      margin: 10px;
-      cursor: pointer;
+      z-index: 1;
     }
 
-    .social:hover {
-      color: #fff;
+    .blog:hover::before {
+      background-color: #ffbd2f;
+      box-shadow: 0 0 20px 5px #ffbd2f;
+    }
+
+    .email:hover::before {
+      background-color: #23c8c8;
+      box-shadow: 0 0 20px 5px #23c8c8;
+    }
+
+    .facebook:hover::before {
+      background-color: #4267B2;
+      box-shadow: 0 0 20px 5px #4267B2;
+    }
+
+    .instagram:hover::before {
+      background: #f86ee1;
+      box-shadow: 0 0 20px 5px #f86ee1;
+    }
+
+    .linkedin:hover::before {
+      background-color: #0e76a8;
+      box-shadow: 0 0 20px 5px #0e76a8;
+    }
+
+    .twitter:hover::before {
+      background-color: #26a7de;
+      box-shadow: 0 0 20px 5px #26a7de;
+    }
+
+    .reddit:hover::before {
+      background-color: #ff4500;
+      box-shadow: 0 0 20px 5px #ff4500;
+    }
+
+    .tiktok:hover::before {
+      background-color: #ff0050;
+      box-shadow: 0 0 20px 5px #ff0050;
+    }
+
+    .youtube:hover::before {
+      background-color: #FF0000;
+      box-shadow: 0 0 20px 5px #FF0000;
+    }
+
+    .pinterest:hover::before {
+      background-color: #c8232c;
+      box-shadow: 0 0 20px 5px #c8232c;
+    }
+
+    .telegram:hover::before {
+      background-color: #2AABEE;
+      box-shadow: 0 0 20px 5px #2AABEE;
     }
   </style>
 
@@ -264,28 +204,39 @@
 
   <script>
     function navigate(id) {
+      //if you want the URL to open in the same window use '_parent'  instead of '_blank'
       if (id === "blog")
-        window.open("https://blog.shorouk.dev", '_blank').focus();
-      else if (id === "email")
-        window.open("mailto:someone@yoursite.com", '_blank').focus();
-      else if (id === "facebook")
-        window.open("https://facebook.com/", '_blank').focus();
-      else if (id === "instagram")
-        window.open("instagram.com", '_blank').focus();
-      else if (id === "linkedin")
-        window.open("https://www.linkedin.com/", '_blank').focus();
-      else if (id === "twitter")
-        window.open("https://twitter.com/", '_blank').focus();
-      else if (id === "reddit")
-        window.open("https://www.reddit.com/", '_blank').focus();
-      else if (id === "tiktok")
-        window.open("https://www.tiktok.com/", '_blank').focus();
-      else if (id === "youtube")
-        window.open("https://www.youtube.com/", '_blank').focus();
-      else if (id === "pinterest")
-        window.open("https://www.pinterest.com/", '_blank').focus();
-      else if (id === "telegram")
-        window.open("https://web.telegram.org/", '_blank').focus();
+        window.open("https://blog.shorouk.dev", '_blank').focus(); //Add the url to your blog
+      else if (id === "email") {
+        window.open("mailto:someone@yoursite.com", '_blank').focus(); //Add your email after "mailto:""
+      }
+      else if (id === "facebook") {
+        window.open("https://facebook.com/", '_blank').focus(); //Add the url to your facebook page or account
+      }
+      else if (id === "instagram") {
+        window.open("instagram.com", '_blank').focus(); //Add the url to your instagram account
+      }
+      else if (id === "linkedin") {
+        window.open("https://www.linkedin.com/", '_blank').focus(); //Add the url to your linkedin account
+      }
+      else if (id === "twitter") {
+        window.open("https://twitter.com/", '_blank').focus(); //Add the url to your twitter account
+      }
+      else if (id === "reddit") {
+        window.open("https://www.reddit.com/", '_blank').focus(); //Add the url to your reddit account
+      }
+      else if (id === "tiktok") {
+        window.open("https://www.tiktok.com/", '_blank').focus(); //Add the url to your tiktok account
+      }
+      else if (id === "youtube") {
+        window.open("https://www.youtube.com/", '_blank').focus(); //Add the url to your youtube account
+      }
+      else if (id === "pinterest") {
+        window.open("https://www.pinterest.com/", '_blank').focus(); //Add the url to your pinterest account
+      }
+      else if (id === "telegram") {
+        window.open("https://web.telegram.org/", '_blank').focus(); //Add the url to your telegram account
+      }
     }
   </script>
 

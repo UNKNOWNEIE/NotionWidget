@@ -24,7 +24,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            max-width: 80%;
+            width: 90%;
+            height: 20%;
             margin: 20px;
             border: 2px solid #00FF00;
             border-radius: 10px;
@@ -79,7 +80,7 @@
 
 <script>
     function dispalyGreetings(today){
-        hrs = today.getHours();
+        let hrs = today.getHours();
         let name = "";
         let greet = "";
         if (hrs < 12)

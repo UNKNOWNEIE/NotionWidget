@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCU Inspired Navigation Menu</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -16,6 +20,14 @@
             box-sizing: border-box;
         }
 
+        body {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         .navMenu {
             font-family: 'Lato', sans-serif;
             text-align: center;
@@ -23,21 +35,22 @@
         }
 
         .navMenu a {
-            color: #ffffff;
+            color: #FFFFFF;
             text-decoration: none;
             text-transform: uppercase;
             display: inline-block;
             padding: 10px 20px;
             margin: 5px;
-            background-color: #00ff00;
+            background-color: #F7B500;
             border-radius: 50px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(247, 181, 0, 0.3);
         }
 
         .navMenu a:hover {
-            background-color: #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            background-color: #FFFFFF;
+            color: #F7B500;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .navMenu a i {
@@ -45,7 +58,6 @@
         }
     </style>
 </head>
-
 <body>
     <nav class="navMenu">
         <a id="home" onclick="navigate(this.id)" href="#"><i class="fas fa-house"></i> Home</a>
@@ -64,32 +76,22 @@
 
     <script>
         function navigate(id) {
-            if (id == 'home')
-                window.open("https://www.notion.so/Home-743cb734ac4c41ee90896e039f0dd917", '_blank').focus();
-            else if (id == "inbox")
-                window.open("https://www.notion.so/Inbox-91a8ce98118147d384c511c67833bb6d", '_blank').focus();
-            else if (id == "week")
-                window.open("https://www.notion.so/shorouk/This-Week-bd3171730a4c4a9097399770acde9882", '_blank').focus();
-            else if (id == "month")
-                window.open("https://www.notion.so/shorouk/This-Month-c18ee8ef9c754f088670caa55df0b0e0", '_blank').focus();
-            else if (id == "projects")
-                window.open("https://www.notion.so/Projects-e6745abbeaf0418aab7b9f6c57f3aba0", '_blank').focus();
-            else if (id == "business")
-                window.open("https://www.notion.so/shorouk/Business-Dashboard-75f3e1cb7d0a4895929ec5feed780e55", '_blank').focus();
-            else if (id == "tasks")
-                window.open("https://www.notion.so/Task-Manager-48ea6f04eaf24aa0889a5b5de34ea415", '_blank').focus();
-            else if (id == "knowledge")
-                window.open("https://www.notion.so/My-Knowledge-Base-7b003813544d478b9f61d813cfaefae5", '_blank').focus();
-            else if (id == "topics")
-                window.open("https://www.notion.so/Topics-Browser-bb6d50722de74a0e8cc2e678e76b0a44", '_blank').focus();
-            else if (id == "notes")
-                window.open("https://www.notion.so/The-Notebook-6939d2ac0fa84089a3c83ca657c9cdfb", '_blank').focus();
-            else if (id == "media")
-                window.open("https://www.notion.so/Multimedia-Library-74c4d2eea2fc4f25b3fdebaaea4de2c3", '_blank').focus();
-            else if (id == "resources")
-                window.open("https://www.notion.so/Resources-Library-766dde1a6f1e4a3499b9d65a8013e5e3", '_blank').focus();
-            else if (id == "lifewiki")
-                window.open("https://www.notion.so/My-Life-wiki-51e257c76f984c2cb58858573a101989", '_blank').focus();
+            const urls = {
+                home: "https://www.notion.so/Home-743cb734ac4c41ee90896e039f0dd917",
+                inbox: "https://www.notion.so/Inbox-91a8ce98118147d384c511c67833bb6d",
+                week: "https://www.notion.so/shorouk/This-Week-bd3171730a4c4a9097399770acde9882",
+                projects: "https://www.notion.so/Projects-e6745abbeaf0418aab7b9f6c57f3aba0",
+                tasks: "https://www.notion.so/Task-Manager-48ea6f04eaf24aa0889a5b5de34ea415",
+                business: "https://www.notion.so/shorouk/Business-Dashboard-75f3e1cb7d0a4895929ec5feed780e55",
+                knowledge: "https://www.notion.so/My-Knowledge-Base-7b003813544d478b9f61d813cfaefae5",
+                topics: "https://www.notion.so/Topics-Browser-bb6d50722de74a0e8cc2e678e76b0a44",
+                notes: "https://www.notion.so/The-Notebook-6939d2ac0fa84089a3c83ca657c9cdfb",
+                media: "https://www.notion.so/Multimedia-Library-74c4d2eea2fc4f25b3fdebaaea4de2c3",
+                resources: "https://www.notion.so/Resources-Library-766dde1a6f1e4a3499b9d65a8013e5e3",
+                lifewiki: "https://www.notion.so/My-Life-wiki-51e257c76f984c2cb58858573a101989"
+            };
+
+            window.open(urls[id], '_blank').focus();
         }
     </script>
 </body>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <!-------->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        .navMenu {
+            font-family: 'Lato', sans-serif;
+            text-align: center;
+            margin: 50px auto;
+            width: fit-content;
+        }
+
+        .navMenu a {
+            color: #00ff00;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 6px;
+            position: relative;
+            font-size: 1.2em;
+            margin: 0 10px;
+            font-weight: normal;
+            animation: pulse 1s infinite, glow 2s infinite alternate;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-shadow: 0 0 5px #8e00ff, 0 0 10px #8e00ff;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .navMenu a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #8e00ff, 0 0 25px #8e00ff;
+            border-color: #ff00ff;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            }
+
+            50% {
+                text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00;
+            }
+
+            100% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navMenu border">
+        <a id="eServices" onclick="navigate(this.id)" href="#" title="eServices"><i class="fas fa-cog"></i> eServices</a>
+        <a id="Canvas" onclick="navigate(this.id)" href="#" title="Canvas"><i class="fas fa-chalkboard"></i> Canvas</a>
+        <a id="ChatGPT" onclick="navigate(this.id)" href="#" title="ChatGPT"><i class="fas fa-comments"></i> ChatGPT</a>
+        <a id="GoogleDrive" onclick="navigate(this.id)" href="#" title="Google Drive"><i class="fas fa-folder"></i> Google Drive</a>
+        <a id="ComputerScience" onclick="navigate(this.id)" href="#" title="Computer Science"><i class="fas fa-laptop-code"></i> Computer Science</a>
+        <a id="GitHub" onclick="navigate(this.id)" href="#" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
+    </nav>
+
+    <script>
+        let direction = "horizontal";
+        if (direction === "vertical") {
+            document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
+        }
+
+        function navigate(id) {
+            if (id == 'eServices')
+                window.open("https://ts.vcu.edu/askit/university-resources/eservices/", '_blank').focus();
+            else if (id == "Canvas")
+                window.open("https://virginiacommonwealth.instructure.com/?login_success=1", '_blank').focus();
+            else if (id == "ChatGPT")
+                window.open("https://chat.openai.com/", '_blank').focus();
+            else if (id == "GoogleDrive")
+                window.open("https://drive.google.com/drive/u/4/home", '_blank').focus();
+            else if (id == "ComputerScience")
+                window.open("https://majormaps.vcu.edu/Major/computer-science", '_blank').focus();
+            else if (id == "GitHub")
+                window.open("https://github.com/", '_blank').focus();
+        }
+    </script>
+
+</body>
+
+</html>

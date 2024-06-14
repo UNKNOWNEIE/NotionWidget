@@ -29,29 +29,29 @@
             margin: 20px;
             border: 2px solid #00FF00;
             border-radius: 10px;
-            box-shadow: 0 0 10px #00FF00, 0 0 15px #00FF00;
+            box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00;
             animation: glow 2s infinite alternate;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.2); /* Transparent background */
             margin-top: 20px;
         }
 
         @keyframes glow {
-            0% { box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
-            100% { box-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+            0% { box-shadow: 0 0 3px #00FF00, 0 0 6px #00FF00; }
+            100% { box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
         }
 
         .greet {
-            font-size: 2.5em;
+            font-size: 2em;
             animation: textGlow 2s infinite alternate;
         }
 
         @keyframes textGlow {
-            0% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
-            100% { text-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+            0% { text-shadow: 0 0 3px #00FF00, 0 0 6px #00FF00; }
+            100% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
         }
 
         .date, .clock {
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin: 5px 0;
             animation: textGlow 2s infinite alternate;
         }

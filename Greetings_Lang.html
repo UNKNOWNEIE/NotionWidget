@@ -3,105 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Schedule Widget</title>
-
+    <title>Greetings</title>
     <style>
         body {
+            background-color: #000000;
+            color: #00FF00;
             font-variant-caps: all-petite-caps;
+            font-family: 'Courier New', monospace;
+            animation: backgroundFade 10s infinite;
+        }
+
+        @keyframes backgroundFade {
+            0% { background-color: #000000; }
+            50% { background-color: #111111; }
+            100% { background-color: #000000; }
         }
 
         .widget {
-            padding: 5px 5px;
-            color: #35459b;
+            padding: 20px;
+            color: #00FF00;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             max-width: 95%;
             margin: auto;
-            border: 3px solid #35459b;
-            border-radius: 5px;
-            box-shadow: 2px 2px 1px 0px #35459b;
+            border: 3px solid #00FF00;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #00FF00, 0 0 25px #00FF00;
+            animation: glow 2s infinite alternate;
         }
 
-        .day-info {
-            font-family: monospace;
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
+            100% { box-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+        }
+
+        .greet {
+            font-size: 3em;
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; }
+            100% { text-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+        }
+
+        .date, .clock {
             font-size: 2em;
-            margin: 0;
+            margin: 10px 0;
+            animation: textGlow 2s infinite alternate;
         }
 
-        .class-info {
-            font-size: 1.5em;
-            margin: 0;
+        .time {
+            display: inline-block;
+            min-width: 20px;
+        }
+
+        .colon {
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="widget">
-            <div class="day-info" id="day-info"></div>
-            <div class="class-info" id="class-info"></div>
+<div class="container">
+    <div class="widget">
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+            <div class="time" id="hour"></div>
+            <div class="colon">:</div>
+            <div class="time" id="min"></div>
+            <div class="colon">:</div>
+            <div class="time" id="sec"></div>
         </div>
     </div>
+</div>
 
-    <script>
-        // School and class schedule
-        var schedule = [
-            { startDate: "2023-09-01", endDate: "2023-09-01", classType: "No School" },
-            { startDate: "2023-09-04", endDate: "2023-09-04", classType: "No School" },
-            { startDate: "2023-09-25", endDate: "2023-09-25", classType: "No School" },
-            { startDate: "2023-11-06", endDate: "2023-11-07", classType: "No School" },
-            { startDate: "2023-11-22", endDate: "2023-11-24", classType: "No School" },
-            { startDate: "2023-12-22", endDate: "2024-01-05", classType: "No School" },
-            { startDate: "2024-01-15", endDate: "2024-01-15", classType: "No School" },
-            { startDate: "2024-02-19", endDate: "2024-02-19", classType: "No School" },
-            { startDate: "2024-03-29", endDate: "2024-03-29", classType: "No School" },
-            { startDate: "2024-04-01", endDate: "2024-04-05", classType: "No School" },
-            { startDate: "2024-04-10", endDate: "2024-04-10", classType: "No School" },
-            { startDate: "2024-06-11", endDate: "2024-08-21", classType: "No School" },
-            { startDate: "2024-08-23", endDate: "2024-08-23", classType: "First day of school" },
-            { startDate: "2023-10-26", endDate: "2023-10-26", classType: "End of Q1" },
-            { startDate: "2023-10-27", endDate: "2023-10-27", classType: "Student early release" },
-            { startDate: "2024-01-18", endDate: "2024-01-18", classType: "End of Q1" },
-            { startDate: "2024-01-19", endDate: "2024-01-19", classType: "Student early release" },
-            { startDate: "2024-03-21", endDate: "2024-03-21", classType: "End of Q3" },
-            { startDate: "2024-03-22", endDate: "2024-03-22", classType: "Student early release" },
-            { startDate: "2024-05-08", endDate: "2024-05-08", classType: "AP CSA EXAM" },
-            { startDate: "2024-05-09", endDate: "2024-05-09", classType: "AP PSY EXAM" },
-            { startDate: "2024-05-16", endDate: "2024-05-16", classType: "AP BIO EXAM" },
-            { startDate: "2024-05-22", endDate: "2024-05-22", classType: "Graduation" }
+<script>
+    function dispalyGreetings(today){
+        hrs = today.getHours();
+        let name = "";
+        let greet = "";
+        if (hrs < 12)
+            greet = 'Good Morning ' + name;
+        else if (hrs >= 12 && hrs <= 17)
+            greet = 'Good Afternoon ' + name;
+        else if (hrs >= 17 && hrs <= 24)
+            greet = 'Good Evening ' + name;
+        document.getElementById('greet').innerHTML = greet;
+    }
+
+    function dispalyDate(today) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
         ];
 
-        function checkSchoolSchedule(date) {
-            var dateString = date.toISOString().split("T")[0];
+        let dayName = days[today.getDay()];
+        let monthName = monthNames[today.getMonth()];
+        let date = today.getDate();
+        let year = today.getFullYear();
+        document.getElementById('date').innerHTML = dayName + ", " + monthName + " " + date + " " + year;
+    }
 
-            for (var i = 0; i < schedule.length; i++) {
-                if (dateString >= schedule[i].startDate && dateString <= schedule[i].endDate) {
-                    return schedule[i].classType;
-                }
-            }
+    function dispalyClock(today) {
+        let hour = padZeros(twelveHour(today.getHours()));
+        let minutes = padZeros(today.getMinutes());
+        let seconds = padZeros(today.getSeconds());
 
-            return "School";
+        if(today.getHours() >= 12){
+            seconds += " pm";
+        } else {
+            seconds += " am";
         }
 
-        function displaySchoolInfo() {
-            var today = new Date();
-            var dayInfoElement = document.getElementById("day-info");
-            var classInfoElement = document.getElementById("class-info");
+        document.getElementById('hour').innerHTML = hour;
+        document.getElementById('min').innerHTML = minutes;
+        document.getElementById('sec').innerHTML = seconds;
+    }
 
-            var schoolStatus = checkSchoolSchedule(today);
-
-            if (schoolStatus === "No School") {
-                dayInfoElement.textContent = "No School Today";
-                classInfoElement.textContent = "";
-            } else {
-                var dayType = today.getDate() % 2 === 0 ? "Even" : "Odd";
-                dayInfoElement.textContent = "School Today";
-                classInfoElement.textContent = "Class Type: " + dayType;
-            }
+    function twelveHour(hour) {
+        if (hour > 12) {
+            return hour -= 12;
+        } else if (hour === 0) {
+            return hour = 12;
+        } else {
+            return hour;
         }
+    }
 
-        displaySchoolInfo();
-    </script>
+    function padZeros(num) {
+        if (num < 10) {
+            num = '0' + num;
+        }
+        return num;
+    }
+
+    function dispalyWidget() {
+        let today = new Date();
+        dispalyGreetings(today);
+        dispalyDate(today);
+        dispalyClock(today);
+        setTimeout(dispalyWidget, 500);
+    }
+
+    dispalyWidget();
+</script>
 </body>
 </html>
